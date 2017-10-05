@@ -16,14 +16,12 @@ class Constants(BaseConstants):
     players_per_group = 3
     num_rounds = 10
 
-
 class Subsession(BaseSubsession):
-    pass
+    ...
+
+class Player(BasePlayer):
+    request_player = models.IntegerField(widget=widgets.RadioSelect(),)
 
 
 class Group(BaseGroup):
     ...
-
-
-class Player(BasePlayer):
-    pass
