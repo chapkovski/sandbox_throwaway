@@ -38,7 +38,7 @@ services:
       OTREE_PRODUCTION: ${OTREE_PRODUCTION}
       OTREE_AUTH_LEVEL: ${OTREE_AUTH_LEVEL}
     ports:
-      - 8000:80
+      - "8000:80"
     volumes:
       - "otree-resetdb:/opt/init"
     # Uncomment for live editing
