@@ -64,7 +64,7 @@ USE_POINTS = True
 LANGUAGE_CODE = 'en'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree']
+INSTALLED_APPS = ['otree','otree_mturk_utils']
 
 # SENTRY_DSN = ''
 
@@ -105,7 +105,14 @@ SESSION_CONFIGS = [
         'display_name': 'sandbox',
         'num_demo_participants': 3,
         'app_sequence': ['sandbox'],
-    }
+    },
+    # {
+    #     'name': 'otto',
+    #     'display_name': 'otto',
+    #     'num_demo_participants': 24,
+    #     'app_sequence': ['otto'],
+    # }
+
 ]
 
 # anything you put after the below line will override
