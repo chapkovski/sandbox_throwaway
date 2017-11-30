@@ -64,7 +64,7 @@ USE_POINTS = True
 LANGUAGE_CODE = 'en'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree','otree_mturk_utils']
+INSTALLED_APPS = ['otree','otree_mturk_utils',   'crispy_forms',]
 
 # SENTRY_DSN = ''
 
@@ -100,18 +100,18 @@ SESSION_CONFIG_DEFAULTS = {
 
 
 SESSION_CONFIGS = [
+    # {
+    #     'name': 'oTree_BRET',
+    #     'display_name': 'oTree_BRET',
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['bret'],
+    # },
     {
         'name': 'sandbox',
         'display_name': 'sandbox',
-        'num_demo_participants': 3,
+        'num_demo_participants': 2,
         'app_sequence': ['sandbox'],
-    },
-    # {
-    #     'name': 'otto',
-    #     'display_name': 'otto',
-    #     'num_demo_participants': 24,
-    #     'app_sequence': ['otto'],
-    # }
+    }
 
 ]
 
