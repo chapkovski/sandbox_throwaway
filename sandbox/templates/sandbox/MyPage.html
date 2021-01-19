@@ -1,24 +1,12 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+{% load otree static %}
 
 {% block title %}
-    test
+    Page title
 {% endblock %}
 
 {% block content %}
-
-{{ form }}
-
+    {% formfields %}
     {% next_button %}
 
 {% endblock %}
-
-{% block scripts %}
-    <script>
-
-    </script>
-{% endblock %}
-
-
-
-

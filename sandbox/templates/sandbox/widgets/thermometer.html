@@ -1,0 +1,119 @@
+{% load otree %}
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+<div id="app_{{ widget.name }}">
+
+    <div data-app="true">
+
+        <v-card class="mx-auto" width="600">
+            <v-toolbar flat dense class='d-flex flex-column'>
+                <v-toolbar-title>
+                    {{ label }}
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-icon color="primary" v-bind="attrs"
+                                    v-on="on">mdi-information
+                            </v-icon>
+                        </template>
+                        <div class="info-icon">[[tooltip]]</div>
+                    </v-tooltip>
+
+
+                    <v-spacer></v-spacer>
+                </v-toolbar-title>
+
+            </v-toolbar>
+
+            <v-card-text>
+                <v-row>
+                    <v-col>
+
+                    </v-col>
+                </v-row>
+                <v-row class="mb-4" justify="space-between">
+                    <v-col class="text-left">
+                        <span class="display-3" v-text="temp" :style="{color:color}"></span>
+
+                        <span class="subheading mr-1">Degrees</span>
+                    </v-col>
+                    <v-col class="text-right">
+                        <v-btn :color="color" dark large fab>
+                            <v-icon large>
+                                mdi-thermometer
+                            </v-icon>
+                        </v-btn>
+                    </v-col>
+                </v-row>
+
+                <v-slider @click="record_click()" v-model="temp" color="grey" track-color="grey" :thumb-color="color"
+                          always-dirty min="0" max="100" required>
+                    <template v-slot:prepend>
+                        <v-icon color="grey" @click="decrement(); record_click()">
+                            mdi-minus
+                        </v-icon>
+                    </template>
+
+                    <template v-slot:append>
+                        <v-icon color="grey" @click="increment(); record_click()">
+                            mdi-plus
+                        </v-icon>
+                    </template>
+                </v-slider>
+            </v-card-text>
+        </v-card>
+
+
+        <input type="hidden" :name="owner" class="form-control" :value='temp'>
+
+    </div>
+
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+<script>
+    var app = new Vue({
+        el: "#app_{{ widget.name }}",
+        delimiters: ['[[', ']]'],
+        vuetify: new Vuetify(),
+        data: function () {
+            return {
+                temp: 0,
+                is_clicked: false,
+                interval: null,
+                tooltip: "A rating of 0 degrees means you feel as cold and negative as possible. A rating of 100 degrees means you feel as warm and positive as possible. You would rate Republicans at 50 degrees if you don't feel particularly positive or negative toward them. How do you feel about Republicans?",
+
+                owner: '{{ widget.name }}',
+                value: 0
+            }
+        },
+
+
+        computed: {
+
+            color() {
+                const colors = ["#A8C2FB", "#6893EE", "#002947", "#A9A9A9", "#FEB938", "#FD9415", "#E23201"]
+                const index = parseInt(this.temp / (100 / colors.length + 1))
+                return colors[index]
+            },
+        },
+
+        methods: {
+            record_click() {
+                console.log("The slider has been clicked")
+                this.is_clicked = true
+            },
+            decrement() {
+                this.temp--
+            },
+            increment() {
+                this.temp++
+            },
+        },
+    })
+
+</script>
